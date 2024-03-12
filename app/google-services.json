@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "106086915102",
+    "firebase_url": "https://registerwithfirebaseapp-20f2a-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "registerwithfirebaseapp-20f2a",
+    "storage_bucket": "registerwithfirebaseapp-20f2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106086915102:android:9018576c6b4d4a7a61220f",
+        "android_client_info": {
+          "package_name": "com.example.registerwithfirebaseapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6mil4sUbop-jS2EL9rRzYNFgu2AjCBqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
