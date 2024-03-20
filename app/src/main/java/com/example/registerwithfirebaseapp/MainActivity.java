@@ -1,16 +1,15 @@
 package com.example.registerwithfirebaseapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.registerwithfirebaseapp.bottomnav.home.HomeFragment;
 import com.example.registerwithfirebaseapp.bottomnav.notes.NotesFragment;
 import com.example.registerwithfirebaseapp.bottomnav.profile.ProfileFragment;
 import com.example.registerwithfirebaseapp.databinding.ActivityMainBinding;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
