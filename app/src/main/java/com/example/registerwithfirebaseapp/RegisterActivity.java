@@ -27,6 +27,15 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+
+
         binding.singUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 }
 
 /// just comm
+//
