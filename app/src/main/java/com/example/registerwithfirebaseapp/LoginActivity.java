@@ -15,7 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * This activity is for logging into the app
+ * This activity is for logging into the app (with Firebase)
  */
 public class LoginActivity extends AppCompatActivity {
 

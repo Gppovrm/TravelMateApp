@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 /**
- * This is register activity
+ * This is activity for registartion (with Firebase)
  */
 public class RegisterActivity extends AppCompatActivity {
 
