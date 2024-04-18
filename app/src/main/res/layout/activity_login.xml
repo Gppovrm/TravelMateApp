@@ -123,7 +123,8 @@
             android:layout_margin="15dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Email"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/password_et"
@@ -132,7 +133,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="Password"
+            android:hint="Пароль"
             android:inputType="textPassword"
             android:padding="12dp" />
 
