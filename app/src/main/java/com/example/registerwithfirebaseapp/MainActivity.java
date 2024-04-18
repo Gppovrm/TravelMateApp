@@ -22,19 +22,30 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This is the main activity
+ */
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
+    private ActivityMainBinding binding; // Main binding
 
+    /**
+     * This is the onCreate method.
+     * @param savedInstanceState Bundle of arguments
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // checking for account login
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
 
+        /**
+         * This is the listening of profile button
+         */
         binding.profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * This is the listening of notes button
+         */
         binding.notesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * This is the listening of trip button
+         */
         binding.newTripBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

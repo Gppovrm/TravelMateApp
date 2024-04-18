@@ -18,9 +18,16 @@ import com.example.registerwithfirebaseapp.databinding.ActivityMainBinding;
 import com.example.registerwithfirebaseapp.databinding.ActivityNewTripBinding;
 import com.example.registerwithfirebaseapp.databinding.FragmentNotesBinding;
 
+/**
+ * This is the activity of create the new trip
+ */
 public class NewTripActivity extends AppCompatActivity {
     private ActivityNewTripBinding binding;
 
+    /**
+     * This is the onCreate method.
+     * @param savedInstanceState Bundle of arguments
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

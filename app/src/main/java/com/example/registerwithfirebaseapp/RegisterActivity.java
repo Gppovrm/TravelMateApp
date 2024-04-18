@@ -17,6 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+/**
+ * This is register activity
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
@@ -27,6 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        /**
+         * This is the listening of back button
+         */
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,21 +42,28 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+        /**
+         * This is the listening of sign up button
+         */
         binding.singUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Checking for empty fields
                 if (binding.emailEt.getText().toString().isEmpty() || binding.passwordEt.toString().isEmpty() || binding.usernameEt.toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Fields can not be empty", Toast.LENGTH_SHORT).show();
                 } else {
+                    // Firebase creating user
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.emailEt.getText().toString(), binding.passwordEt.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        //creating user info hashmap
                                         HashMap<String, String> userInfo = new HashMap<>();
                                         userInfo.put("email", binding.emailEt.getText().toString());
                                         userInfo.put("username", binding.usernameEt.getText().toString());
 
+                                        // Firebase authorization
                                         FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                 .setValue(userInfo);
 

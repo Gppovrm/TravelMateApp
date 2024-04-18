@@ -25,9 +25,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * This is profile activity
+ */
 public class ProfileActivity extends AppCompatActivity {
     private ActivityProfileBinding binding;
 
+    /**
+     * This is the onCreate method.
+     * @param savedInstanceState Bundle of arguments
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +43,9 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(rootView);
 
 
-
+        /**
+         * This is the listening of back button
+         */
         binding.backMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +54,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
 
+        /**
+         * Loading the user information
+         */
         loadUserInfo();
+
+        /**
+         * This is the listening of logout button
+         */
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +70,10 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * This is method for getting information from Firebase
+     */
     private void loadUserInfo(){
         FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
