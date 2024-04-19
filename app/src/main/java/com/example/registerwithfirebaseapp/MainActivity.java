@@ -30,6 +30,9 @@ import java.net.URLConnection;
 
 import com.example.registerwithfirebaseapp.LocalParams.*;
 
+import org.json.*;
+
+
 //import com.google.gson.*;
 //import com.google.gson.reflect.*;
 
@@ -93,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         location = "London"; // for the tests
         String urlString = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + LocalParams.API_KEY + "&units=metric";
 
+
         try {
             StringBuilder result = new StringBuilder();
             URL url = new URL(urlString);
@@ -103,10 +107,21 @@ public class MainActivity extends AppCompatActivity {
                 result.append(line);
             }
             rd.close();
-            System.out.println(result);
+//            System.out.println(result);
+
+
+            JSONObject objectJson = new JSONObject(result.toString());
+
+            String mainWeather = objectJson.getJSONObject("weather").getString("main");
+
+            System.out.println(mainWeather);
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
         }
+
+
     }
 
 
