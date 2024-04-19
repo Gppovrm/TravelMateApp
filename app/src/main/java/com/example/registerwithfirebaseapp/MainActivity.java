@@ -19,8 +19,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.net.URL;
+import java.net.URLConnection;
+
+import com.example.registerwithfirebaseapp.LocalParams.*;
+
+//import com.google.gson.*;
+//import com.google.gson.reflect.*;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -75,5 +86,29 @@ public class MainActivity extends AppCompatActivity {
 //            return true;
 //        });
     }
+
+
+
+    public void requestForOpenWheatherApi(String location) {
+        location = "London"; // for the tests
+        String urlString = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + LocalParams.API_KEY + "&units=metric";
+
+        try {
+            StringBuilder result = new StringBuilder();
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            rd.close();
+            System.out.println(result);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 }
