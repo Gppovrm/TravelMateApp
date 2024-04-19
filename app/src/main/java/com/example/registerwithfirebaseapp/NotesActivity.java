@@ -12,10 +12,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.registerwithfirebaseapp.databinding.ActivityNotesBinding;
 
+/**
+ * This is activity for the notes
+ */
 public class NotesActivity extends AppCompatActivity {
 
     private ActivityNotesBinding binding;
 
+    /**
+     * This is the onCreate method.
+     * @param savedInstanceState Bundle of arguments
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

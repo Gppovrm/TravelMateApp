@@ -5,78 +5,140 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/beige"
     tools:context=".NewTripActivity">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Как назовем?"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-
-    <EditText
-        android:id="@+id/nameEditText"
+    <LinearLayout
+        android:id="@+id/linear_new_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите название"
-        android:background="@drawable/rectangle_22"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"/>
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/placeEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Куда отправимся?"
-        android:background="@drawable/rectangle_22"
-        app:layout_constraintTop_toBottomOf="@id/nameEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp">
 
-    <EditText
-        android:id="@+id/dateStartEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="ДД.ММ.ГГГГ"
-        android:background="@drawable/rectangle_22"
-        app:layout_constraintTop_toBottomOf="@id/placeEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Как назовём?"
+                android:fontFamily="@font/raleway_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
 
-    <EditText
-        android:id="@+id/dateEndEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_22"
-        android:hint="ДД.ММ.ГГГГ"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateStartEditText" />
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:hint="например, прощай работа"
+                android:singleLine="true"
+                android:textSize="16dp"
+                android:fontFamily="@font/raleway_medium"
+                android:padding="16dp"
+                android:layout_marginVertical="15dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Куда отправимся?"
+                android:fontFamily="@font/raleway_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/placeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:hint="например, Сочи"
+                android:singleLine="true"
+                android:textSize="16dp"
+                android:fontFamily="@font/raleway_medium"
+                android:padding="16dp"
+                android:layout_marginVertical="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Когда начало?"
+                android:fontFamily="@font/raleway_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/dateStartEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ДД.ММ.ГГГГ"
+                android:background="@drawable/rounded_edittext"
+                android:singleLine="true"
+                android:textSize="16dp"
+                android:fontFamily="@font/raleway_medium"
+                android:padding="16dp"
+                android:layout_marginVertical="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Когда конец?"
+                android:fontFamily="@font/raleway_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/dateEndEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:hint="ДД.ММ.ГГГГ"
+                android:textSize="16dp"
+                android:fontFamily="@font/raleway_medium"
+                android:padding="16dp"
+                android:layout_marginVertical="15dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/peach"
+        android:padding="16dp"
         android:text="Готово"
-        android:backgroundTint="#FFA583"
-        app:layout_constraintTop_toBottomOf="@id/dateEndEditText"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16dp"
+        android:fontFamily="@font/raleway_semibold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"/>
-
-
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_new_trip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
