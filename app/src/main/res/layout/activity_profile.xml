@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bottomnav.profile.ProfileFragment">
-
+    tools:context=".ProfileActivity">
     <ImageButton
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
@@ -16,19 +15,27 @@
         android:src="@drawable/logout_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <ImageButton
+        android:id="@+id/back_main_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_round_arrow_back"
+        app:layout_constraintBaseline_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <ImageView
         android:id="@+id/profile_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/usernameTv1"
+        app:layout_constraintBottom_toTopOf="@+id/usernameTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_icon" />
-
     <TextView
-        android:id="@+id/usernameTv1"
+        android:id="@+id/usernameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ProfileFragment"
@@ -38,6 +45,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Username" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

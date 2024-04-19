@@ -15,6 +15,21 @@
         android:theme="@style/Theme.RegisterWithFirebaseApp"
         tools:targetApi="31">
         <activity
+            android:name=".NewTripActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity1"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

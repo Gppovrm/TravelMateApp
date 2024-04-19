@@ -49,7 +49,7 @@ public class ProfileFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String username = snapshot.child("username").getValue().toString();
 
-                        binding.usernameTv.setText(username);
+                        binding.usernameTv1.setText(username);
                     }
 
                     @Override

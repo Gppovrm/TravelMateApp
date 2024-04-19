@@ -6,19 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="80dp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/bottom_navigation_manu"
-        app:layout_constraintStart_toEndOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="411dp"
+        android:layout_height="612dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backgroud_login_main" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="370dp"
+        android:layout_height="480dp"
+        android:background="@drawable/beige_background_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <View
+        android:id="@+id/date_view"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:background="@drawable/white_rounded_bg"
+        app:layout_constraintEnd_toEndOf="@id/view2"
+        app:layout_constraintStart_toStartOf="@id/view2"
+        app:layout_constraintTop_toTopOf="@id/view2"
+        android:layout_marginTop="20dp"/>
+
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+        android:background="@drawable/white_rounded_bg"
+        app:layout_constraintEnd_toEndOf="@id/view2"
+        app:layout_constraintStart_toStartOf="@id/view2"
+        app:layout_constraintBottom_toTopOf="@id/notes_btn"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/notes_btn"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/grey"
+        android:text="Перейти"
+        android:fontFamily="@font/raleway_semibold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/view2"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <Button
+        android:id="@+id/new_trip_btn"
+        android:layout_width="370dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/peach"
+        android:text="Новый отпуск"
+        android:fontFamily="@font/raleway_semibold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+    <ImageView
+        android:id="@+id/profile_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/profile_circle_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
