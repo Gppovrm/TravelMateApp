@@ -57,7 +57,7 @@
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:backgroundTint="@color/grey"
-        android:text="Перейти"
+        android:text="Перейти к заметкам"
         android:fontFamily="@font/raleway_bold"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -67,19 +67,19 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
 
-    <Button
-        android:id="@+id/new_trip_btn"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/peach"
-        android:text="Новый отпуск"
-        android:fontFamily="@font/raleway_bold"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+<!--    <Button-->
+<!--        android:id="@+id/new_trip_btn"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:backgroundTint="@color/peach"-->
+<!--        android:text="Новый отпуск"-->
+<!--        android:fontFamily="@font/raleway_bold"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view2" />-->
 
 
     <ImageView

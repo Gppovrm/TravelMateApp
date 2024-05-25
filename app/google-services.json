@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "106086915102",
-    "firebase_url": "https://registerwithfirebaseapp-20f2a-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "registerwithfirebaseapp-20f2a",
-    "storage_bucket": "registerwithfirebaseapp-20f2a.appspot.com"
+    "project_number": "698619600927",
+    "project_id": "fir-travelapp-a7e17",
+    "storage_bucket": "fir-travelapp-a7e17.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:106086915102:android:9018576c6b4d4a7a61220f",
+        "mobilesdk_app_id": "1:698619600927:android:c6512cb406dd0d4081f52a",
         "android_client_info": {
           "package_name": "com.example.registerwithfirebaseapp"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC6mil4sUbop-jS2EL9rRzYNFgu2AjCBqI"
+          "current_key": "AIzaSyDLRYwjtP67LdA7cyYl_nSW8yURrwG8JmI"
         }
       ],
       "services": {
