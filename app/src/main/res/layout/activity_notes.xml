@@ -174,7 +174,7 @@
         android:layout_marginTop="10dp"/>
 
     <ImageView
-        android:id="@+id/add_new_note"
+        android:id="@+id/add_new_note_btn"
         android:src="@drawable/ic_add"
         android:layout_width="50dp"
         android:layout_height="50dp"

@@ -55,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button notes_btn = findViewById(R.id.notes_btn);
+        notes_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NotesActivity.class));
+
+            }
+        });
+
 
         //??????????????????????????????????????? DANGER
 //        getSupportActionBar().setTitle("Login");
