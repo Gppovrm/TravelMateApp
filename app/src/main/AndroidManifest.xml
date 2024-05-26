@@ -15,6 +15,9 @@
         android:theme="@style/Theme.RegisterWithFirebaseApp"
         tools:targetApi="31">
         <activity
+            android:name=".ViewNoteDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotesActivity"
             android:exported="false" />
         <activity
