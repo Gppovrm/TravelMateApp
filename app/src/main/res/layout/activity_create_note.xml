@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/save_note_btn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/ic_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,8 +23,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
         android:padding="10dp"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
         android:hint="Title"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -45,7 +43,7 @@
         android:background="@drawable/rounded_edittext"
         android:hint="Content"
         android:gravity="top"
-        android:padding="30dp"
+        android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:fontFamily="@font/raleway_medium"
