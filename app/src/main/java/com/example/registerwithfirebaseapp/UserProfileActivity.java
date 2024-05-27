@@ -26,6 +26,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private String fullName, email;
     private ImageView imageView;
     private FirebaseAuth authProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
 
-        authProfile = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = authProfile.getCurrentUser();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
 
 
         //New Trip
@@ -52,24 +53,39 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        ImageView buttonMainMenu = findViewById(R.id.button_menu);
+        buttonMainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
+            }
+        });
+
+        ImageView buttonLogOut = findViewById(R.id.button_logout);
+        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(UserProfileActivity.this, LoginActivity.class));
+            }
+        });
+
 //        Button buttonMainMenu = findViewById(R.id.button_menu);
-//        buttonNewTrip.setOnClickListener(new View.OnClickListener() {
+//        buttonMainMenu.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
-//
 //            }
 //        });
 //
 //        Button buttonLogOut = findViewById(R.id.button_logout);
-//        buttonNewTrip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(UserProfileActivity.this, LoginActivity.class));
-//
-//            }
-//        });
+//        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    FirebaseAuth.getInstance().signOut();
+//                    startActivity(new Intent(UserProfileActivity.this, LoginActivity.class));
+//                }
+//            });
 
         if (firebaseUser == null) {
             Toast.makeText(UserProfileActivity.this, "Something went wrong! User's details are  not available at the moment", Toast.LENGTH_LONG).show();
@@ -85,31 +101,34 @@ public class UserProfileActivity extends AppCompatActivity {
 
 
         //Extracting User Reference from Database for "Registered Users"
-        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
-        referenceProfile.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
+        databaseReference.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ReadWriteUserDetails readWriteUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
-                if (readWriteUserDetails != null) {
-//                    fullName = firebaseUser.getDisplayName();
-                    email = firebaseUser.getEmail();
-                    //????????????????????????????????????????????????????????????????????????????????????????
-                    fullName = readWriteUserDetails.fullName;
-
-                    textViewWelcome.setText("Welcome," + fullName + "!");
-                    textViewFullName.setText(fullName);
-                    textViewEmail.setText(email);;
-
-                }
+//                ReadWriteUserDetails readWriteUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
+//                if (readWriteUserDetails != null) {
+////                    fullName = firebaseUser.getDisplayName();
+////                    email = firebaseUser.getEmail();
+////                    //????????????????????????????????????????????????????????????????????????????????????????
+////                    fullName = readWriteUserDetails.fullName;
+//
+//                    textViewWelcome.setText("Welcome," + fullName + "!");
+//                    textViewFullName.setText(fullName);
+//                    textViewEmail.setText(email);;
+//
+//                }
+                fullName = firebaseUser.getDisplayName().toString();
+                textViewWelcome.setText("Welcome," + fullName + "!");
+                textViewFullName.setText(snapshot.child("fullName").getValue().toString());
+                textViewEmail.setText(firebaseUser.getEmail().toString());
                 progressBar.setVisibility(View.GONE);
 
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(UserProfileActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.GONE);
-
             }
         });
     }

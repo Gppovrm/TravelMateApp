@@ -65,8 +65,8 @@ public class NewTripActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(NewTripActivity.this, "YEEEEEEEEEEEEEEEEEESSSSS", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(NewTripActivity.this, "Trip has been successfully created", Toast.LENGTH_LONG).show();
+                                finish();
 
                             }
                         }
