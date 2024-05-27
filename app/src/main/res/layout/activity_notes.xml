@@ -191,6 +191,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/note_bg_view"
         app:layout_constraintEnd_toEndOf="@id/note_bg_view"
         android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
         />
 
 

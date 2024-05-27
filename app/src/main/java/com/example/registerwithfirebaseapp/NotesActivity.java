@@ -86,7 +86,7 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(NotesActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -94,7 +94,6 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
         databaseReference.child(firebaseUser.getUid()).child("yes").child("notes_list").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 noteModels.clear();
 
                 for(DataSnapshot dataSnapshot1:snapshot.getChildren()){
@@ -104,15 +103,14 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
                     noteModels.add(new NoteModel(id, note_title, note_content));
                 }
 
-
-                    NoteItemsRecyclerView noteItemsRecyclerView = new NoteItemsRecyclerView(noteModels, NotesActivity.this);
-                    notelist.setLayoutManager(new LinearLayoutManager(NotesActivity.this));
-                    notelist.setAdapter(noteItemsRecyclerView);
+                NoteItemsRecyclerView noteItemsRecyclerView = new NoteItemsRecyclerView(noteModels, NotesActivity.this);
+                notelist.setLayoutManager(new LinearLayoutManager(NotesActivity.this));
+                notelist.setAdapter(noteItemsRecyclerView);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(NotesActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
             }
         });
     }
