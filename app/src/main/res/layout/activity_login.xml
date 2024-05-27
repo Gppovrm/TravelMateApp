@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.12" />
 
     <Button
-        android:id="@+id/login_btn"
+        android:id="@+id/button_login"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:backgroundTint="@color/peach"
@@ -84,7 +84,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_btn">
+        app:layout_constraintTop_toBottomOf="@id/button_login">
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,12 +94,13 @@
             android:fontFamily="@font/raleway_medium"
             android:text="Нет аккаунта?" />
 
-        <TextView
-            android:id="@+id/go_to_register_activity_tv"
+        <Button
+            android:id="@+id/button_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:textColor="@color/peach"
+            android:backgroundTint="@color/peach"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:fontFamily="@font/raleway_medium"
             android:text="Зарегистрироваться" />
@@ -116,10 +117,11 @@
         >
 
         <EditText
-            android:id="@+id/email_et"
+            android:id="@+id/editText_login_email"
             android:layout_width="266dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:inputType="textEmailAddress"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Email"
@@ -127,7 +129,7 @@
             android:singleLine="true"/>
 
         <EditText
-            android:id="@+id/password_et"
+            android:id="@+id/editText_login_pwd"
             android:layout_width="266dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -136,6 +138,16 @@
             android:hint="Пароль"
             android:inputType="textPassword"
             android:padding="12dp" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:elevation="10dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

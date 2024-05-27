@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".RegisterActivity">
+    tools:context=".Register">
 
 
     <ImageView
@@ -21,7 +21,7 @@
     <View
         android:id="@+id/view2"
         android:layout_width="320dp"
-        android:layout_height="354dp"
+        android:layout_height="400dp"
         android:background="@drawable/beige_background_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,18 +62,19 @@
         app:layout_constraintTop_toBottomOf="@id/register_title">
 
         <EditText
-            android:id="@+id/email_et"
+            android:id="@+id/editText_register_email"
             android:layout_width="266dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Email"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:singleLine="true"/>
 
         <EditText
-            android:id="@+id/password_et"
+            android:id="@+id/editText_register_password"
             android:layout_width="266dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -85,19 +86,30 @@
 
 
         <EditText
-            android:id="@+id/username_et"
+            android:id="@+id/editText_register_full_name"
             android:layout_width="266dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Логин"
+            android:inputType="textPersonName"
             android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/editText_register_yes"
+            android:hint="enter 'yes' "
+            android:layout_width="266dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"/>
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/sing_up_btn"
+        android:id="@+id/button_register"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:backgroundTint="@color/peach"
@@ -109,6 +121,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view2"
         android:layout_marginTop="40dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:elevation="10dp"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

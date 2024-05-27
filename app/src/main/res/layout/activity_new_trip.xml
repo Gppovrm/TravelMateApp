@@ -32,7 +32,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/nameEditText"
+                android:id="@+id/editText_trip_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
@@ -61,7 +61,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/placeEditText"
+                android:id="@+id/editText_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
@@ -88,7 +88,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/dateStartEditText"
+                android:id="@+id/editText_date_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="ДД.ММ.ГГГГ"
@@ -96,10 +96,6 @@
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:fontFamily="@font/raleway_medium"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:padding="16dp"
                 android:layout_marginVertical="15dp"/>
         </LinearLayout>
@@ -119,17 +115,13 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/dateEndEditText"
+                android:id="@+id/editText_date_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:hint="ДД.ММ.ГГГГ"
                 android:textSize="16dp"
                 android:fontFamily="@font/raleway_medium"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:padding="16dp"
                 android:layout_marginVertical="15dp"/>
         </LinearLayout>
@@ -137,7 +129,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/button_submit"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/peach"
