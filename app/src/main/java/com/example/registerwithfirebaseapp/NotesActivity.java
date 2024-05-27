@@ -63,6 +63,8 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                noteModels.clear();
+
                 for(DataSnapshot dataSnapshot1:snapshot.getChildren()){
                     String id = dataSnapshot1.child("id").getValue(String.class);
                     String note_title = dataSnapshot1.child("note_title").getValue(String.class);
