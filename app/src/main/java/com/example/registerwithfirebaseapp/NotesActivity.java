@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -43,10 +44,13 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
+        TextView trip_title = findViewById(R.id.name_vacation);
+        TextView trip_city = findViewById(R.id.location_vacation);
+        TextView date_start = findViewById(R.id.date_start);
+        TextView date_end = findViewById(R.id.date_end);
+
         RecyclerView notelist = findViewById(R.id.note_list);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
 
         ImageView add_new_note_btn = findViewById(R.id.add_new_note_btn);
         add_new_note_btn.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +61,35 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
         });
 
 
+        ImageView back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NotesActivity.this, MainActivity.class));
+            }
+        });
+
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
+
+        databaseReference.child(firebaseUser.getUid()).child("yes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                trip_title.setText(snapshot.child("tripTitle").getValue().toString());
+                trip_city.setText(snapshot.child("city").getValue().toString());
+                date_start.setText(snapshot.child("dateStart").getValue().toString());
+                date_end.setText(snapshot.child("dateEnd").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         databaseReference.child(firebaseUser.getUid()).child("yes").child("notes_list").addValueEventListener(new ValueEventListener() {
             @Override
@@ -78,16 +110,11 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
                     notelist.setAdapter(noteItemsRecyclerView);
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-
-
-
     }
 
     @Override
@@ -97,6 +124,5 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
         intent.putExtra("note_title",noteModel.getNote_title());
         intent.putExtra("note_content",noteModel.getNote_content());
         startActivity(intent);
-
     }
 }

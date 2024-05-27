@@ -17,17 +17,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_landscape" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/back_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
         android:src="@drawable/ic_round_arrow_back"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"/>
-
 
 
     <View
