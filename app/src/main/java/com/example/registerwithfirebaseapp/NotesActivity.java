@@ -50,8 +50,6 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
         TextView date_end = findViewById(R.id.date_end);
 
         RecyclerView notelist = findViewById(R.id.note_list);
-
-
         ImageView add_new_note_btn = findViewById(R.id.add_new_note_btn);
         add_new_note_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +57,20 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
                 startActivity(new Intent(NotesActivity.this, CreateNoteActivity.class));
             }
         });
-
-
         ImageView back_btn = findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(NotesActivity.this, MainActivity.class));
+            }
+        });
+
+        Button ButtonTickets = findViewById(R.id.tickets_btn);
+        ButtonTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NotesActivity.this, TicketsActivity.class));
+
             }
         });
 

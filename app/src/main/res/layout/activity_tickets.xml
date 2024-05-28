@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotesActivity">
+    tools:context=".TicketsActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -125,7 +125,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
->
+        >
 
         <Button
             android:id="@+id/list_btn"
@@ -143,10 +143,10 @@
             android:layout_width="115dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/peach"
+            android:backgroundTint="@color/white"
             android:text="Заметки"
             android:fontFamily="@font/raleway_semibold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp"/>
 
         <Button
@@ -154,9 +154,9 @@
             android:layout_width="115dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/peach"
             android:text="Билеты"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:fontFamily="@font/raleway_semibold"
             android:textSize="14sp"/>
     </LinearLayout>
@@ -182,17 +182,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/note_list"
-        android:layout_width="320dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@id/note_bg_view"
-        app:layout_constraintStart_toStartOf="@id/note_bg_view"
-        app:layout_constraintBottom_toBottomOf="@+id/note_bg_view"
-        app:layout_constraintEnd_toEndOf="@id/note_bg_view"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="20dp"
-        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
