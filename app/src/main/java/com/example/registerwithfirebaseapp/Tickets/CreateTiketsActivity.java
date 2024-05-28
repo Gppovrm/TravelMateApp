@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.registerwithfirebaseapp.Notes.NoteModel;
 import com.example.registerwithfirebaseapp.R;
+import com.example.registerwithfirebaseapp.TicketsActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -124,5 +125,9 @@ public class CreateTiketsActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+    //DO NOT REMOVE!!!!!
+    public void btn_action(View view) {
+        startActivity(new Intent(getApplicationContext(), TicketsActivity.class));//TicketsActivity ---View_PDF_Files.class
     }
 }
