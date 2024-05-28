@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -16,11 +18,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
 
+    private String fullName;
     private FirebaseAuth authProfile;
 
     @Override
@@ -31,22 +39,15 @@ public class MainActivity extends AppCompatActivity {
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
-
-
         if (firebaseUser == null) {
             Toast.makeText(MainActivity.this, "LOGIN FIRST", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
         } else {
             Toast.makeText(MainActivity.this, "Already LOGIN", Toast.LENGTH_LONG).show();
-
-
         }
 
         imageView = findViewById(R.id.profile_btn);
-
-        // Apply OnClickListener  to imageView to
-        // switch from one activity to another
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,32 +64,41 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        TextView trip_title = findViewById(R.id.name_vacation);
+        TextView trip_city = findViewById(R.id.location_vacation);
+        TextView date_start = findViewById(R.id.date_start);
+        TextView date_end = findViewById(R.id.date_end);
+        TextView welcome_name = findViewById(R.id.welcome_name_login);
 
 
-        //??????????????????????????????????????? DANGER
-//        getSupportActionBar().setTitle("Login");
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
-//        Button buttonLogin = findViewById(R.id.button_login);
-//        buttonLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
 
-        //Open Re
-//        Button buttonRegister = findViewById(R.id.button_register);
-//        buttonRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, Register.class);
-//                startActivity(intent);
-//            }
-//        });
+        databaseReference.child(auth.getCurrentUser().getUid()).child("yes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                fullName = auth.getCurrentUser().getDisplayName().toString();
+                welcome_name.setText(fullName); // Раотничек
+
+//                welcome_name.setText(snapshot.child("fullName").getValue().toString()); // Раотничек
+                trip_title.setText(snapshot.child("tripTitle").getValue().toString()); // Название отпуска
+                trip_city.setText(snapshot.child("city").getValue().toString()); // Местоположение
+                date_start.setText(snapshot.child("dateStart").getValue().toString());
+                date_end.setText(snapshot.child("dateEnd").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
 }
+
+
 
 
 //import android.content.Intent;
