@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.registerwithfirebaseapp.Tickets.CreateTiketsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +32,8 @@ public class TicketsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tickets);
 
+        RecyclerView ticketslist = findViewById(R.id.tickets_list);
+
         TextView trip_title = findViewById(R.id.name_vacation);
         TextView trip_city = findViewById(R.id.location_vacation);
         TextView date_start = findViewById(R.id.date_start);
@@ -40,6 +44,15 @@ public class TicketsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TicketsActivity.this, MainActivity.class));
+            }
+        });
+
+
+        ImageView add_new_ticket_btn = findViewById(R.id.add_new_ticket_btn);
+        add_new_ticket_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TicketsActivity.this, CreateTiketsActivity.class));
             }
         });
 
