@@ -1,7 +1,7 @@
 package com.example.registerwithfirebaseapp;
 
 import android.content.Intent;
-import android.media.midi.MidiDeviceService;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,12 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +20,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+// imports for data counter
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.Locale;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
         } else {
-            Toast.makeText(MainActivity.this, "Already LOGIN", Toast.LENGTH_LONG).show();
+//            Toast.makeText(MainActivity.this, "Already LOGIN", Toast.LENGTH_LONG).show();
         }
 
         imageView = findViewById(R.id.profile_btn);
@@ -70,12 +78,15 @@ public class MainActivity extends AppCompatActivity {
         TextView date_end = findViewById(R.id.date_end);
         TextView welcome_name = findViewById(R.id.welcome_name_login);
 
+        TextView number_days = findViewById(R.id.number_days);
+
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
 
         databaseReference.child(auth.getCurrentUser().getUid()).child("yes").addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 fullName = auth.getCurrentUser().getDisplayName().toString();
@@ -86,6 +97,26 @@ public class MainActivity extends AppCompatActivity {
                 trip_city.setText(snapshot.child("city").getValue().toString()); // Местоположение
                 date_start.setText(snapshot.child("dateStart").getValue().toString());
                 date_end.setText(snapshot.child("dateEnd").getValue().toString());
+
+                ///////////////// Счет дней до отпуска
+                Date currentDate = new Date();
+
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+                String date1 = dateFormat.format(currentDate);
+                String date2 = snapshot.child("dateStart").getValue().toString();
+
+                LocalDate startDate = LocalDate.parse(date1, formatter);
+                LocalDate endDate = LocalDate.parse(date2, formatter);
+
+                long p2 = ChronoUnit.DAYS.between(startDate, endDate);
+                number_days.setText(String.valueOf(p2));
+
+//                Toast.makeText(MainActivity.this, "Между: "+ p2 + "!!!!!!!!!", Toast.LENGTH_LONG).show();
+
+                ////////////
+
             }
 
             @Override
@@ -96,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
 
 
