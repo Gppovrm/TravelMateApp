@@ -70,6 +70,15 @@ public class NotesActivity extends AppCompatActivity implements NoteCLickListene
         });
 
 
+        Button check_items_list_btn = findViewById(R.id.check_items_list_btn);
+        check_items_list_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NotesActivity.this, CheckItemsActivity.class));
+            }
+        });
+
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
 
