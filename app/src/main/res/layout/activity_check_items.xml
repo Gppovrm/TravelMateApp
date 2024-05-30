@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotesActivity">
+    tools:context=".CheckItemsActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,7 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"/>
-
 
     <View
         android:id="@+id/view1"
@@ -126,13 +124,13 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <Button
-            android:id="@+id/check_items_list_btn"
+            android:id="@+id/list_btn"
             android:layout_width="115dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/peach"
             android:text="Чек-лист"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:fontFamily="@font/raleway_semibold"
             android:textSize="14sp"/>
 
@@ -141,14 +139,14 @@
             android:layout_width="115dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/peach"
+            android:backgroundTint="@color/white"
             android:text="Заметки"
             android:fontFamily="@font/raleway_semibold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp"/>
 
         <Button
-            android:id="@+id/tickets_btn"
+            android:id="@+id/tikets_btn"
             android:layout_width="115dp"
             android:layout_height="55dp"
             android:layout_weight="1"
@@ -175,7 +173,7 @@
         android:layout_marginTop="290dp"/>
 
     <ImageView
-        android:id="@+id/add_new_note_btn"
+        android:id="@+id/add_new_check_item_btn"
         android:src="@drawable/ic_add"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -185,7 +183,7 @@
         android:layout_marginEnd="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/note_list"
+        android:id="@+id/check_items_list"
         android:layout_width="320dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="@id/note_bg_view"
