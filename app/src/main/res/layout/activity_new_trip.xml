@@ -52,6 +52,8 @@
             android:orientation="vertical"
             android:layout_marginVertical="10dp">
 
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,17 +62,25 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 
-            <EditText
-                android:id="@+id/editText_city"
+            <Spinner
+                android:id="@+id/timezone_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
-                android:hint="например, Сочи"
-                android:singleLine="true"
-                android:textSize="16dp"
-                android:fontFamily="@font/raleway_medium"
                 android:padding="16dp"
                 android:layout_marginVertical="15dp"/>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editText_city"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/rounded_edittext"-->
+<!--                android:hint="например, Сочи"-->
+<!--                android:singleLine="true"-->
+<!--                android:textSize="16dp"-->
+<!--                android:fontFamily="@font/raleway_medium"-->
+<!--                android:padding="16dp"-->
+<!--                android:layout_marginVertical="15dp"/>-->
         </LinearLayout>
 
         <LinearLayout
