@@ -13,6 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
+import com.github.prominence.openweathermap.api.enums.Language;
+import com.github.prominence.openweathermap.api.enums.UnitSystem;
+import com.github.prominence.openweathermap.api.model.weather.Weather;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -72,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        TextView welcome_name = findViewById(R.id.welcome_name_login);
         TextView trip_title = findViewById(R.id.name_vacation);
         TextView trip_city = findViewById(R.id.location_vacation);
         TextView date_start = findViewById(R.id.date_start);
         TextView date_end = findViewById(R.id.date_end);
-        TextView welcome_name = findViewById(R.id.welcome_name_login);
-
+        TextView temperature_number = findViewById(R.id.temperature_number);
         TextView number_days = findViewById(R.id.number_days);
 
 
@@ -117,6 +122,25 @@ public class MainActivity extends AppCompatActivity {
 
                 ////////////
 
+                ///////////////// Установка температуры
+
+//                trip_city
+                String API_KEY = "bc7e4735b58fbed9142139733049dd46";
+                String str_trip_city = trip_city.toString();
+                OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_KEY);
+
+                final Weather weather = openWeatherClient
+                        .currentWeather()
+                        .single()
+                        .byCityName(str_trip_city)
+                        .language(Language.ENGLISH)
+                        .unitSystem(UnitSystem.METRIC)
+                        .retrieve()
+                        .asJava();
+
+                temperature_number.setText(String.valueOf(weather.getTemperature()));
+
+                ////////////
             }
 
             @Override
