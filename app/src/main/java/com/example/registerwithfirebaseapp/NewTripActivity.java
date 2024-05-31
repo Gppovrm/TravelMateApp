@@ -1,10 +1,12 @@
 package com.example.registerwithfirebaseapp;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,6 +20,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +40,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
@@ -43,12 +48,8 @@ public class NewTripActivity extends AppCompatActivity {
 
     private EditText editTripTitle, editTextDateStart, editTextDateEnd;
     String textCity;
-    //Calendar current;
     Spinner spinner;
-    //long miliSeconds;
     ArrayAdapter<String> idAdapter;
-    SimpleDateFormat sdf;
-    //Date resultDate;
     String textTimeZone;
 
 
@@ -84,42 +85,38 @@ public class NewTripActivity extends AppCompatActivity {
         String[] idArray = idList.toArray(new String[0]);
 
 
-        //sdf = new SimpleDateFormat("EEEE, ddMMMM yyyy HH:mm:ss");
-
         idAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idArray);
 
         idAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(idAdapter);
 
-        //getGMTTime();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //getGMTTime();
                 textTimeZone = (String) (parent.getItemAtPosition(position));
                 String[] tokens = textTimeZone.split("/");
                 textCity = tokens[1];
-
-                /*TimeZone timeZone = TimeZone.getTimeZone(selectedId);
-                String timeZoneName = timeZone.getDisplayName();
-
-                int timeZoneOffset = timeZone.getRawOffset() / (60 * 1000);
-
-                int hrs = timeZoneOffset / 60;
-                int mins = timeZoneOffset % 60;
-
-                miliSeconds = miliSeconds + timeZone.getRawOffset();
-
-                resultDate = new Date(miliSeconds);
-                System.out.println(sdf.format(resultDate));
-
-                miliSeconds = 0;*/
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+
+        editTextDateStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DateSet(editTextDateStart);
+            }
+        });
+
+        editTextDateEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DateSet(editTextDateEnd);
             }
         });
 
@@ -136,7 +133,7 @@ public class NewTripActivity extends AppCompatActivity {
 
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = auth.getCurrentUser();
-////////////////////////////////////////////////
+
                 ReadWriteTripDetails writeTripDetails = new ReadWriteTripDetails(textTripTitle, textCity, textDateStart, textDateEnd, textTimeZone);
 
 
@@ -161,20 +158,18 @@ public class NewTripActivity extends AppCompatActivity {
         });
     }
 
-/*    private void getGMTTime(){
-        current = Calendar.getInstance();
-
-        miliSeconds = current.getTimeInMillis();
-
-        TimeZone tzCurrent = current.getTimeZone();
-        int offset = tzCurrent.getRawOffset();
-        if(tzCurrent.inDaylightTime(new Date())){
-            offset = offset + tzCurrent.getDSTSavings();
-        }
-
-        miliSeconds = miliSeconds - offset;
-
-        resultDate = new Date(miliSeconds);
-        System.out.println(sdf.format(resultDate));
-    }*/
+    private void DateSet(EditText editTextDate){
+        MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Выберите дату")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+            @Override
+            public void onPositiveButtonClick(Long selection) {
+                String date = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date(selection));
+                editTextDate.setText(date);
+            }
+        });
+        materialDatePicker.show(getSupportFragmentManager(), "tag");
+    }
 }
