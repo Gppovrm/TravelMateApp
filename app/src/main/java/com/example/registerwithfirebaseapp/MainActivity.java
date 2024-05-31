@@ -3,6 +3,8 @@ package com.example.registerwithfirebaseapp;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private ImageView imageView;
 
@@ -140,14 +143,29 @@ public class MainActivity extends AppCompatActivity {
 //                OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_KEY);
                 Log.i("Api", "Start work");
                 try {
-                    Executor executor= Executors.newSingleThreadExecutor();
-                    executor.execute(new Runnable() {
+                    Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
                             WeatherFetcher weather = new WeatherFetcher();
                             try {
+
+
+
                                 int temperature = weather.getTemperatureForCity(str_trip_city);
-//                                temperature_number.setText(temperature);
+                                Log.i("Temperature", String.valueOf(temperature));
+
+                                Message msg = handler.obtainMessage();
+                                Bundle bundle = new Bundle();
+
+                                String dateString = String.valueOf(temperature);
+
+                                bundle.putString("Key", dateString);
+                                msg.setData(bundle);
+                                handler.sendMessage(msg);
+
+
+//                                TextView ex_temperature_number = findViewById(R.id.temperature_number);
+//                                ex_temperature_number.setText(String.valueOf(temperature));
 
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
@@ -155,23 +173,34 @@ public class MainActivity extends AppCompatActivity {
                                 throw new RuntimeException(e);
                             }
                         }
-                    });
+                    };
+                    Thread thread = new Thread(runnable);
+                    thread.start();
                 } catch (NoDataFoundException e) {
                     Log.e("Error", "NoDataFoundException");
                 }
 
 
-                Log.i("Api", "End work");
-
-
                 ////////////
             }
+
+            Handler handler = new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    Bundle bundle = msg.getData();
+                    Log.e("Bundle", String.valueOf(msg.getData()));
+                    String date = bundle.getString("Key");
+                    TextView ex_temperature_number = findViewById(R.id.temperature_number);
+                    ex_temperature_number.setText(String.valueOf(date));
+                }
+            };
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
 
