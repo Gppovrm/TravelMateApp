@@ -36,7 +36,7 @@
         android:layout_marginStart="30dp"
         android:src="@drawable/ic_round_arrow_back"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
@@ -104,7 +104,8 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_edittext"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            android:visibility="gone"/>
     </LinearLayout>
 
 

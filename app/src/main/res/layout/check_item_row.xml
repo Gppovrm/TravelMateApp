@@ -24,7 +24,7 @@
             android:text="DemoText"
             android:maxLines="1"
             android:fontFamily="@font/raleway_medium"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginStart="20dp"/>
 

@@ -89,7 +89,7 @@
             android:fontFamily="@font/raleway_medium"
             android:text="00.00.00"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
             android:fontFamily="@font/raleway_medium"
             android:text="00.00.00"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
