@@ -61,6 +61,14 @@ public class CheckItemsActivity extends AppCompatActivity implements OnDialogClo
                 startActivity(new Intent(CheckItemsActivity.this, NotesActivity.class));
             }
         });
+        Button ButtonTickets = findViewById(R.id.tikets_btn);
+        ButtonTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckItemsActivity.this, TicketsActivity.class));
+
+            }
+        });
 
 
         ImageView add_new_check_item_btn = findViewById(R.id.add_new_check_item_btn);

@@ -36,7 +36,7 @@
 
     <View
         android:id="@+id/date_view"
-        android:layout_width="190dp"
+        android:layout_width="260dp"
         android:layout_height="50dp"
         android:background="@drawable/white_rounded_bg"
         app:layout_constraintEnd_toEndOf="@id/view2"
@@ -88,9 +88,10 @@
 
     <ImageView
         android:id="@+id/profile_btn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
         android:src="@drawable/profile_circle_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -113,7 +114,7 @@
             android:text="Привет,"
             android:fontFamily="@font/raleway_bold"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -124,7 +125,7 @@
             android:text="Работничек"
             android:fontFamily="@font/raleway_bold"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -146,9 +147,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
-            android:text="00.00.00"
+            android:text="00.00.0000"
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="22sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -156,16 +157,16 @@
             android:fontFamily="@font/raleway_medium"
             android:text=" - "
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="22sp"/>
 
         <TextView
             android:id="@+id/date_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
-            android:text="00.00.00"
+            android:text="00.00.0000"
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="22sp"/>
 
     </LinearLayout>
 
@@ -176,12 +177,12 @@
         android:fontFamily="@font/raleway_bold"
         android:text="Название отпуска"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="26sp"
         app:layout_constraintTop_toBottomOf="@id/date_view"
         app:layout_constraintStart_toStartOf="@id/view2"
         app:layout_constraintBottom_toTopOf="@id/location_vacation"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/location_vacation"
@@ -190,7 +191,7 @@
         android:fontFamily="@font/raleway_medium"
         android:text="Местоположение"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:singleLine="true"
         android:maxLength="25"
         app:layout_constraintTop_toBottomOf="@id/name_vacation"
@@ -220,7 +221,7 @@
                 android:fontFamily="@font/raleway_medium"
                 android:text="Местное время"
                 android:textColor="@color/black"
-                android:textSize="16sp"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/local_time"
@@ -229,8 +230,8 @@
                 android:fontFamily="@font/raleway_semibold"
                 android:text="00:00"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="60dp"/>
+                android:textSize="24sp"
+                android:layout_marginStart="50dp"/>
 
         </LinearLayout>
 
@@ -246,7 +247,7 @@
                 android:fontFamily="@font/raleway_medium"
                 android:text="Погода"
                 android:textColor="@color/black"
-                android:textSize="16sp"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/temperature_number"
@@ -255,7 +256,7 @@
                 android:fontFamily="@font/raleway_semibold"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:layout_marginStart="135dp"/>
 
             <TextView
@@ -264,7 +265,7 @@
                 android:fontFamily="@font/raleway_semibold"
                 android:text="°C"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="24sp"/>
 
 
         </LinearLayout>
@@ -359,7 +360,7 @@
             android:fontFamily="@font/raleway_medium"
             android:text="Дней до отпуска:"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_marginEnd="20dp"/>
 
         <TextView
@@ -369,7 +370,7 @@
             android:fontFamily="@font/raleway_semibold"
             android:text="1000"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="26sp"/>
 
     </LinearLayout>
 
