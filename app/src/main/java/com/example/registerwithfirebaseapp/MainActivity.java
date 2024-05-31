@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +19,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
+import com.github.prominence.openweathermap.api.enums.Language;
+import com.github.prominence.openweathermap.api.enums.UnitSystem;
+import com.github.prominence.openweathermap.api.exception.NoDataFoundException;
+import com.github.prominence.openweathermap.api.model.weather.Weather;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 // imports for data counter
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Period;
@@ -35,11 +44,14 @@ import java.util.Date;
 import java.util.Locale;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 // imports fot time
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private ImageView imageView;
 
@@ -56,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
@@ -68,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         imageView = findViewById(R.id.profile_btn);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,12 +100,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        TextView welcome_name = findViewById(R.id.welcome_name_login);
+
         TextView trip_title = findViewById(R.id.name_vacation);
         TextView trip_city = findViewById(R.id.location_vacation);
         TextView date_start = findViewById(R.id.date_start);
         TextView date_end = findViewById(R.id.date_end);
-        TextView welcome_name = findViewById(R.id.welcome_name_login);
-
+        TextView temperature_number = findViewById(R.id.temperature_number);
         TextView number_days = findViewById(R.id.number_days);
 
         local_time = findViewById(R.id.local_time);
@@ -139,14 +154,74 @@ public class MainActivity extends AppCompatActivity {
 
                 ////////////
 
+                ///////////////// Установка температуры
+
+//                trip_city
+                String API_KEY = "bc7e4735b58fbed9142139733049dd46";
+                String str_trip_city = (String) trip_city.getText();
+//                Log.i("str_trip_city", str_trip_city);
+
+
+//                OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_KEY);
+                Log.i("Api", "Start work");
+                try {
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            WeatherFetcher weather = new WeatherFetcher();
+                            try {
+
+
+
+                                int temperature = weather.getTemperatureForCity(str_trip_city);
+                                Log.i("Temperature", String.valueOf(temperature));
+
+                                Message msg = handler.obtainMessage();
+                                Bundle bundle = new Bundle();
+
+                                String dateString = String.valueOf(temperature);
+
+                                bundle.putString("Key", dateString);
+                                msg.setData(bundle);
+                                handler.sendMessage(msg);
+
+
+//                                TextView ex_temperature_number = findViewById(R.id.temperature_number);
+//                                ex_temperature_number.setText(String.valueOf(temperature));
+
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    };
+                    Thread thread = new Thread(runnable);
+                    thread.start();
+                } catch (NoDataFoundException e) {
+                    Log.e("Error", "NoDataFoundException");
+                }
+
+
+                ////////////
             }
+
+            Handler handler = new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    Bundle bundle = msg.getData();
+                    Log.e("Bundle", String.valueOf(msg.getData()));
+                    String date = bundle.getString("Key");
+                    TextView ex_temperature_number = findViewById(R.id.temperature_number);
+                    ex_temperature_number.setText(String.valueOf(date));
+                }
+            };
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
             }
         });
-
 
     }
 
@@ -177,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(minuteUpdateReceiver);
     }
+
 
 }
 
