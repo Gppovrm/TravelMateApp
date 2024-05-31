@@ -37,73 +37,55 @@ public class WeatherFetcher {
         final int[] temp = new int[1];
         temp[0] = 1;
 
+            try {
 
-                try {
-                    Log.i("Api request", "Start request");
-                    String str_url = BASE_URL + "?q=" + city + "&appid=" + API_KEY + "&units=metric"; // url запрос
-                    Log.i("Api request", str_url);
-                    // Create connection to the API end point, by default used GET method
-                    URL url = new URL(str_url);
+                Log.i("Api request", "Start request");
+                String str_url = BASE_URL + "?q=" + city + "&appid=" + API_KEY + "&units=metric"; // url запрос
+                Log.i("Api request", str_url);
+                // Create connection to the API end point, by default used GET method
+                URL url = new URL(str_url);
 
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
 
-                    conn.connect();
+                conn.connect();
 
-                    int responsecode = conn.getResponseCode();
+                int responsecode = conn.getResponseCode();
 
-                    if (responsecode != 200) {
-                        throw new RuntimeException("HttpResponseCode: " + responsecode);
-                    } else {
+                if (responsecode != 200) {
+                    throw new RuntimeException("HttpResponseCode: " + responsecode);
+                } else {
 
-                        String inline = "";
-                        Scanner scanner = new Scanner(url.openStream());
+                    String inline = "";
+                    Scanner scanner = new Scanner(url.openStream());
 
-                        //Write all the JSON data into a string using a scanner
-                        while (scanner.hasNext()) {
-                            inline += scanner.nextLine();
-                        }
-
-                        scanner.close();
-
-                        JSONObject jsonObject = new JSONObject(inline);
-
-                        JSONObject obj = (JSONObject) jsonObject.get("main");
-
-                        double d_temp = (double) obj.get("temp");
-                        temp[0] = (int) d_temp;
-                        int it = (int) temp[0];
-                        Log.i("Api result", String.valueOf(it));
-//                        temperature_number.setText(temp[0]);
+                    //Write all the JSON data into a string using a scanner
+                    while (scanner.hasNext()) {
+                        inline += scanner.nextLine();
                     }
-                    Log.i("Api request", "End request");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
+
+                    scanner.close();
+
+                    JSONObject jsonObject = new JSONObject(inline);
+
+                    JSONObject obj = (JSONObject) jsonObject.get("main");
+
+                    double d_temp = (double) obj.get("temp");
+                    temp[0] = (int) d_temp;
+                    int it = (int) temp[0];
+                    Log.i("Api result", String.valueOf(it));
+
                 }
+                Log.i("Api request", "End request");
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
 
         Log.i("Api request", "Go out");
         return temp[0];
-
-
-
-
-
-
-
-
-        //Using the JSON simple library parse the string into a json object
-//            JSONParser parsee = new JSONParser();
-
-//        try {
-//
-//
-//            return
-//        } catch (JSONException err) {
-//            System.out.println("Exception : " + err.toString());
-//        }
-//        return 0;
-
     }
+
 }
