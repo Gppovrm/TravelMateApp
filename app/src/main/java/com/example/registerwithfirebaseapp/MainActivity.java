@@ -3,6 +3,7 @@ package com.example.registerwithfirebaseapp;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
+import com.github.prominence.openweathermap.api.exception.NoDataFoundException;
 import com.github.prominence.openweathermap.api.model.weather.Weather;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 // imports for data counter
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Period;
@@ -35,6 +38,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
@@ -60,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         imageView = findViewById(R.id.profile_btn);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,19 +133,36 @@ public class MainActivity extends AppCompatActivity {
 
 //                trip_city
                 String API_KEY = "bc7e4735b58fbed9142139733049dd46";
-                String str_trip_city = trip_city.toString();
-                OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_KEY);
+                String str_trip_city = (String) trip_city.getText();
+//                Log.i("str_trip_city", str_trip_city);
 
-                final Weather weather = openWeatherClient
-                        .currentWeather()
-                        .single()
-                        .byCityName(str_trip_city)
-                        .language(Language.ENGLISH)
-                        .unitSystem(UnitSystem.METRIC)
-                        .retrieve()
-                        .asJava();
 
-                temperature_number.setText(String.valueOf(weather.getTemperature()));
+//                OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_KEY);
+                Log.i("Api", "Start work");
+                try {
+                    Executor executor= Executors.newSingleThreadExecutor();
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            WeatherFetcher weather = new WeatherFetcher();
+                            try {
+                                int temperature = weather.getTemperatureForCity(str_trip_city);
+                                temperature_number.setText(temperature);
+
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    });
+                } catch (NoDataFoundException e) {
+                    Log.e("Error", "NoDataFoundException");
+                }
+
+
+                Log.i("Api", "End work");
+
 
                 ////////////
             }
@@ -148,9 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
+
 
 
 }
