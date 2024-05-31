@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 local_time.setText(time);
 
 
-                ///////////////// Счет дней до отпуска
+                // =========== Счет дней до отпуска ===========
                 Date currentDate = new Date();
 
                 DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
@@ -152,11 +152,11 @@ public class MainActivity extends AppCompatActivity {
 
 //                Toast.makeText(MainActivity.this, "Между: "+ p2 + "!!!!!!!!!", Toast.LENGTH_LONG).show();
 
-                ////////////
+                // =============================================
 
-                ///////////////// Установка температуры
+                // =========== Установка температуры ===========
 
-//                trip_city
+
                 String API_KEY = "bc7e4735b58fbed9142139733049dd46";
                 String str_trip_city = (String) trip_city.getText();
 //                Log.i("str_trip_city", str_trip_city);
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                                int temperature = weather.getTemperatureForCity(str_trip_city);
+                                int temperature = weather.getTemperatureForCity(str_trip_city); // получение температуры по городу
                                 Log.i("Temperature", String.valueOf(temperature));
 
                                 Message msg = handler.obtainMessage();
@@ -185,9 +185,9 @@ public class MainActivity extends AppCompatActivity {
                                 msg.setData(bundle);
                                 handler.sendMessage(msg);
 
-
-//                                TextView ex_temperature_number = findViewById(R.id.temperature_number);
-//                                ex_temperature_number.setText(String.valueOf(temperature));
+                                //  Использовать нельзя - краш => Получаем через handler
+                                //  TextView ex_temperature_number = findViewById(R.id.temperature_number);
+                                //  ex_temperature_number.setText(String.valueOf(temperature));
 
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
@@ -198,14 +198,15 @@ public class MainActivity extends AppCompatActivity {
                     };
                     Thread thread = new Thread(runnable);
                     thread.start();
+
                 } catch (NoDataFoundException e) {
                     Log.e("Error", "NoDataFoundException");
                 }
+                // =================================
 
-
-                ////////////
             }
 
+            // =========== Handler для AsyncProcess ===========
             Handler handler = new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
@@ -216,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     ex_temperature_number.setText(String.valueOf(date));
                 }
             };
+            // =================================
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -259,39 +261,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.util.Log;
-//import android.view.View;
-//
-//import androidx.annotation.NonNull;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.fragment.app.Fragment;
-//
-//import com.example.registerwithfirebaseapp.databinding.ActivityMainBinding;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.ValueEventListener;
-//
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//import java.net.URL;
-//import java.net.URLConnection;
-//
-//import com.example.registerwithfirebaseapp.LocalParams.*;
-//
-//import org.json.*;
-//
-//
-////import com.google.gson.*;
-////import com.google.gson.reflect.*;
-//
+
 //
 ///**
 // * This is the main activity
