@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
                 date_end.setText(snapshot.child("dateEnd").getValue().toString());
 
                 timeZone = TimeZone.getTimeZone(snapshot.child("timeZone").getValue().toString());
+                Calendar c = Calendar.getInstance(timeZone);
+                String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+ String.format("%02d" , c.get(Calendar.MINUTE));
+                local_time.setText(time);
 
 
                 ///////////////// Счет дней до отпуска
