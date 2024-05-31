@@ -33,7 +33,7 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         textViewWelcome = findViewById(R.id.textView_show_welcome);
-        textViewFullName = findViewById(R.id.textView_show_full_name);
+//        textViewFullName = findViewById(R.id.textView_show_full_name);
         textViewEmail = findViewById(R.id.textView_show_email);
 
         progressBar = findViewById(R.id.progressBar);
@@ -119,7 +119,7 @@ public class UserProfileActivity extends AppCompatActivity {
 //                }
                 fullName = firebaseUser.getDisplayName().toString();
                 textViewWelcome.setText("Welcome," + fullName + "!");
-                textViewFullName.setText(snapshot.child("fullName").getValue().toString());
+//                textViewFullName.setText(snapshot.child("fullName").getValue().toString());
                 textViewEmail.setText(firebaseUser.getEmail().toString());
                 progressBar.setVisibility(View.GONE);
 

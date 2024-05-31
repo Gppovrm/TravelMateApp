@@ -62,6 +62,14 @@ public class TicketsActivity extends AppCompatActivity {
             }
         });
 
+        Button check_items_list_btn = findViewById(R.id.check_items_list_btn);
+        check_items_list_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TicketsActivity.this, CheckItemsActivity.class));
+            }
+        });
+
 
         ImageView add_new_ticket_btn = findViewById(R.id.add_new_ticket_btn);
         add_new_ticket_btn.setOnClickListener(new View.OnClickListener() {

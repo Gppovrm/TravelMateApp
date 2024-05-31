@@ -8,32 +8,38 @@
     android:padding="30dp"
     tools:context=".Tickets.CreateTiketsActivity">
 
-<!--    <EditText-->
-<!--        android:id="@+id/txt_pdfName"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:hint="Enter PDF File Name"-->
-<!--        android:textSize="22sp" />-->
-
+    <!--    <EditText-->
+    <!--        android:id="@+id/txt_pdfName"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:hint="Enter PDF File Name"-->
+    <!--        android:textSize="22sp" />-->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/logo"/>
     <EditText
         android:id="@+id/txt_pdfName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/raleway_bold"
+        android:hint="Введите название для билета"
+        android:maxLength="20"
+        android:maxLines="1"
         android:padding="10dp"
-        android:hint="Enter PDF File Name"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:fontFamily="@font/raleway_bold"
-        android:maxLines="1"
-        android:maxLength="20"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_upload"
@@ -41,21 +47,22 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="40dp"
+        android:backgroundTint="@color/peach"
         android:text="Загрузить PDF"
         android:textSize="20sp" />
-
-
-<!--    Лучше не убирать эту кнопку потому что если переходить на список билетв свайпом влево, то будет кага с билетами-->
-<!--    Просьба укарасить кнопочку и не удалять ее, сдеать большой и заметной чтоб юзеры нажимали на неё, а не свайпали)))-->
+    <!--    Лучше не убирать эту кнопку потому что если переходить на список билетв свайпом влево, то будет кага с билетами-->
+    <!--    Просьба укарасить кнопочку и не удалять ее, сдеать большой и заметной чтоб юзеры нажимали на неё, а не свайпали)))-->
     <Button
         android:id="@+id/btn_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="15dp"
-        android:text="View PDF Files"
-        android:textSize="20sp"
-        android:onClick="btn_action"/>
+        android:backgroundTint="@color/peach"
+        android:onClick="btn_action"
+        android:text="Смотреть все билеты"
+        android:textSize="20sp" />
+
 
 
 
