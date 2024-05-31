@@ -124,44 +124,37 @@ public class Register extends AppCompatActivity {
 //                                firebaseUser.sendEmailVerification();
 //                                Toast.makeText(Register.this, "User registered successfully. Pls verify your email ", Toast.LENGTH_LONG).show();
 
-
                                 //open profile after successful registration
                                 Intent intent = new Intent(Register.this, UserProfileActivity.class);
                                 //to prevent user from returnung back to RegAct on pressing back button after registration
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish(); // to close RegAct
-
-
                             } else {
                                 Toast.makeText(Register.this, "User registered  failed. Pls try again ", Toast.LENGTH_LONG).show();
                             }
                             //Hide progressBar whether User creation is  successful or failed
                             progressBar.setVisibility(View.GONE);
-
                         }
                     });
-
-
                 } else {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e) {
-                        editTextRegisterPwd.setError("Your password is too weak/ Use a mix of alphabets, numbers, and special symbols");
+                        editTextRegisterPwd.setError("Your password is too weak. Use a mix of alphabets, numbers, and special symbols");
                         editTextRegisterPwd.requestFocus();
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         editTextRegisterPwd.setError("Your email is invalid or already in use. Kindly re-enter");
                         editTextRegisterPwd.requestFocus();
                     } catch (FirebaseAuthUserCollisionException e) {
-                        editTextRegisterPwd.setError("User is already registered with this email. Use another");
+//                        editTextRegisterPwd.setError("User is already registered with this email. Use another");
+                        editTextRegisterPwd.setError("OK");
                         editTextRegisterPwd.requestFocus();
                     } catch (Exception e) {
                         Log.e(TAG, e.getMessage());
                         Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
-
                     }
                     //Hide progressBar whether User creation is  successful or failed
-
                     progressBar.setVisibility(View.GONE);
                 }
             }

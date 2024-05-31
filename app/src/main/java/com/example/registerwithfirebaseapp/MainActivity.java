@@ -1,6 +1,9 @@
 package com.example.registerwithfirebaseapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -27,10 +30,14 @@ import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.time.LocalDate;
 import java.time.ZoneId;
+
+// imports fot time
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String fullName;
     private FirebaseAuth authProfile;
+
+    private TimeZone timeZone;
+    private BroadcastReceiver minuteUpdateReceiver;
+    private TextView local_time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
         TextView trip_title = findViewById(R.id.name_vacation);
         TextView trip_city = findViewById(R.id.location_vacation);
         TextView date_start = findViewById(R.id.date_start);
@@ -79,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         TextView welcome_name = findViewById(R.id.welcome_name_login);
 
         TextView number_days = findViewById(R.id.number_days);
+
+        local_time = findViewById(R.id.local_time);
 
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -97,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 trip_city.setText(snapshot.child("city").getValue().toString()); // Местоположение
                 date_start.setText(snapshot.child("dateStart").getValue().toString());
                 date_end.setText(snapshot.child("dateEnd").getValue().toString());
+
+                timeZone = TimeZone.getTimeZone(snapshot.child("timeZone").getValue().toString());
+                Calendar c = Calendar.getInstance(timeZone);
+                String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+ String.format("%02d" , c.get(Calendar.MINUTE));
+                local_time.setText(time);
+
 
                 ///////////////// Счет дней до отпуска
                 Date currentDate = new Date();
@@ -128,6 +150,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private void startMinuteUpdater(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_TIME_TICK);
+        minuteUpdateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Calendar c = Calendar.getInstance(timeZone);
+                String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+ String.format("%02d" , c.get(Calendar.MINUTE));
+                local_time.setText(time);
+            }
+        };
+
+        registerReceiver(minuteUpdateReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        startMinuteUpdater();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        unregisterReceiver(minuteUpdateReceiver);
+    }
 
 }
 

@@ -52,6 +52,8 @@
             android:orientation="vertical"
             android:layout_marginVertical="10dp">
 
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,17 +62,14 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 
-            <EditText
-                android:id="@+id/editText_city"
+            <Spinner
+                android:id="@+id/timezone_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
-                android:hint="например, Сочи"
-                android:singleLine="true"
-                android:textSize="16dp"
-                android:fontFamily="@font/raleway_medium"
                 android:padding="16dp"
                 android:layout_marginVertical="15dp"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -87,6 +86,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 
+
             <EditText
                 android:id="@+id/editText_date_start"
                 android:layout_width="match_parent"
@@ -97,7 +97,12 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/raleway_medium"
                 android:padding="16dp"
-                android:layout_marginVertical="15dp"/>
+                android:layout_marginVertical="15dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -123,7 +128,12 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/raleway_medium"
                 android:padding="16dp"
-                android:layout_marginVertical="15dp"/>
+                android:layout_marginVertical="15dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
+
         </LinearLayout>
 
     </LinearLayout>
