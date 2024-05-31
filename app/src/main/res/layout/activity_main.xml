@@ -21,18 +21,22 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="350dp"
-        android:layout_height="550dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/beige_background_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginTop="160dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
 
     <View
         android:id="@+id/date_view"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="50dp"
         android:background="@drawable/white_rounded_bg"
         app:layout_constraintEnd_toEndOf="@id/view2"
@@ -44,7 +48,7 @@
     <View
         android:id="@+id/time_weather_money_view"
         android:layout_width="320dp"
-        android:layout_height="250dp"
+        android:layout_height="180dp"
         android:background="@drawable/white_rounded_bg"
         app:layout_constraintBottom_toTopOf="@id/count_days_textview"
         app:layout_constraintEnd_toEndOf="@id/view2"
@@ -90,7 +94,8 @@
         android:src="@drawable/profile_circle_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/view2"/>
+        app:layout_constraintBottom_toTopOf="@id/view2"
+        android:layout_marginTop="40dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -99,7 +104,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/view2"
-        android:layout_marginStart="20dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -173,8 +179,9 @@
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/date_view"
         app:layout_constraintStart_toStartOf="@id/view2"
+        app:layout_constraintBottom_toTopOf="@id/location_vacation"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/location_vacation"
@@ -188,8 +195,9 @@
         android:maxLength="25"
         app:layout_constraintTop_toBottomOf="@id/name_vacation"
         app:layout_constraintStart_toStartOf="@id/view2"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/time_weather_money_view"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="25dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -261,73 +269,73 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:gravity="center">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="75dp"-->
+<!--            android:gravity="center">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_medium"
-                android:text="Курс валют"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="25dp"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/raleway_medium"-->
+<!--                android:text="Курс валют"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_marginBottom="25dp"-->
+<!--                android:layout_marginTop="25dp"/>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginStart="80dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_marginStart="80dp">-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <TextView
-                        android:id="@+id/currency_start"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/raleway_semibold"
-                        android:text="RUB"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/currency_start"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/raleway_semibold"-->
+<!--                        android:text="RUB"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp"/>-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/raleway_semibold"
-                        android:text="/"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/raleway_semibold"-->
+<!--                        android:text="/"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp"/>-->
 
-                    <TextView
-                        android:id="@+id/currency_end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/raleway_semibold"
-                        android:text="RUB"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/currency_end"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/raleway_semibold"-->
+<!--                        android:text="RUB"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp"/>-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-                <TextView
-                    android:id="@+id/currency_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/raleway_semibold"
-                    android:text="1"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/currency_number"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/raleway_semibold"-->
+<!--                    android:text="1"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp"/>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
 
     </LinearLayout>
