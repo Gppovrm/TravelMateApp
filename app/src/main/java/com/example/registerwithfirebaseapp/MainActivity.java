@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                             WeatherFetcher weather = new WeatherFetcher();
                             try {
                                 int temperature = weather.getTemperatureForCity(str_trip_city);
-                                temperature_number.setText(temperature);
+//                                temperature_number.setText(temperature);
 
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
